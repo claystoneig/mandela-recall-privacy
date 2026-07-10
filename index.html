@@ -1,0 +1,468 @@
+<style>
+  :root {
+    --bg: #faf8fc;
+    --surface: #ffffff;
+    --text: #1e1a29;
+    --text-muted: #6b6478;
+    --accent: #6935c9;
+    --accent-soft: #f0eafb;
+    --border: #e6e0f0;
+    --shadow: 0 1px 2px rgba(30, 20, 50, 0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14121f;
+      --surface: #1e1a2e;
+      --text: #f2eefc;
+      --text-muted: #b3a9c9;
+      --accent: #b694fa;
+      --accent-soft: rgba(182, 148, 250, 0.14);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: none;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14121f;
+    --surface: #1e1a2e;
+    --text: #f2eefc;
+    --text-muted: #b3a9c9;
+    --accent: #b694fa;
+    --accent-soft: rgba(182, 148, 250, 0.14);
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: none;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #faf8fc;
+    --surface: #ffffff;
+    --text: #1e1a29;
+    --text-muted: #6b6478;
+    --accent: #6935c9;
+    --accent-soft: #f0eafb;
+    --border: #e6e0f0;
+    --shadow: 0 1px 2px rgba(30, 20, 50, 0.04);
+  }
+
+  * { box-sizing: border-box; }
+
+  .privacy-doc {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .privacy-doc h1,
+  .privacy-doc h2 {
+    font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  .shell {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .brandbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-serif, Georgia, serif;
+    font-weight: 700;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .brandname {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 40px;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 0 0 40px;
+  }
+
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    box-shadow: var(--shadow);
+  }
+
+  nav.toc .eyebrow {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding: 0 0 0 1.1em;
+    columns: 2;
+    column-gap: 28px;
+  }
+
+  nav.toc li {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+  }
+
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav.toc a:hover,
+  nav.toc a:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  section {
+    margin: 0 0 40px;
+    scroll-margin-top: 24px;
+  }
+
+  .eyebrow {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 4px 0 14px;
+  }
+
+  section p,
+  section li {
+    color: var(--text);
+    font-size: 15.5px;
+    max-width: 66ch;
+  }
+
+  section p { margin: 0 0 14px; }
+
+  section ul {
+    margin: 0 0 14px;
+    padding-left: 1.2em;
+  }
+
+  section li { margin-bottom: 8px; }
+
+  section li:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  a {
+    color: var(--accent);
+  }
+
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 18px 0;
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+
+  .callout p + p { margin-top: 8px; }
+
+  .fill {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    margin: 4px 0 14px;
+  }
+
+  table th,
+  table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  table th {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 14px;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0 40px;
+  }
+
+  footer {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 560px) {
+    .shell { padding: 40px 18px 72px; }
+    h1 { font-size: 28px; }
+    nav.toc ol { columns: 1; }
+  }
+</style>
+
+<div class="privacy-doc">
+  <div class="shell">
+
+    <div class="brandbar">
+      <div class="mark">?</div>
+      <div class="brandname">MANDELA RECALL</div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective July 10, 2026</p>
+
+    <p class="lede">
+      Mandela Recall is a trivia app about collective false memories — so it should go without
+      saying that we try to be exactly right about what we remember of <em>your</em> data, too.
+      This page covers what we collect, why, and how to reach us if you want any of it changed or removed.
+    </p>
+
+    <nav class="toc" aria-label="Table of contents">
+      <span class="eyebrow">On this page</span>
+      <ol>
+        <li><a href="#collect">1. Information we collect</a></li>
+        <li><a href="#use">2. How we use it</a></li>
+        <li><a href="#third-parties">3. Third-party services</a></li>
+        <li><a href="#sharing">4. Sharing &amp; sale of data</a></li>
+        <li><a href="#retention">5. Retention &amp; deletion</a></li>
+        <li><a href="#rights">6. Your choices &amp; rights</a></li>
+        <li><a href="#children">7. Children's privacy</a></li>
+        <li><a href="#security">8. Security</a></li>
+        <li><a href="#changes">9. Changes to this policy</a></li>
+        <li><a href="#contact">10. Contact us</a></li>
+      </ol>
+    </nav>
+
+    <section id="collect">
+      <span class="eyebrow">01</span>
+      <h2>Information we collect</h2>
+      <p>We collect only what the app needs to run the quiz, keep votes honest, and show you real crowd stats.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>What it includes</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Account &amp; sign-in</td>
+              <td>A unique account ID, and — only if you choose to share it with Apple — your name and email (Apple lets you hide your real email with a private relay address).</td>
+              <td>Sign in with Apple, via Firebase Authentication</td>
+            </tr>
+            <tr>
+              <td>Your votes</td>
+              <td>Which answer you picked on each question, tied to your account ID so you can't be counted twice.</td>
+              <td>You, while playing</td>
+            </tr>
+            <tr>
+              <td>Effect submissions</td>
+              <td>Any Mandela Effect experience you describe through "Submit Effect Experience" in Settings.</td>
+              <td>You, if you choose to submit one</td>
+            </tr>
+            <tr>
+              <td>Usage data</td>
+              <td>App events like sign-in, quiz started, answer submitted, ad shown — no content, just that the event happened.</td>
+              <td>Firebase Analytics</td>
+            </tr>
+            <tr>
+              <td>Advertising data</td>
+              <td>Technical/device data Google's ad SDK uses to serve and measure ads.</td>
+              <td>Google AdMob</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>One free look before you sign in.</strong> Your very first question can be answered without
+          an account — that answer isn't saved anywhere, it just shows you how the reveal works. Signing in
+          is required starting with question two, so votes can be counted once per person.
+        </p>
+      </div>
+
+      <p>We don't collect precise location, payment details, health data, or biometric data. There's nothing to buy in the app.</p>
+    </section>
+
+    <section id="use">
+      <span class="eyebrow">02</span>
+      <h2>How we use it</h2>
+      <ul>
+        <li>Record your vote once per question and show you the crowd majority alongside the documented truth.</li>
+        <li>Prevent the same person from voting on a question more than once.</li>
+        <li>Review submitted effect experiences as candidates for future trivia questions.</li>
+        <li>Understand overall usage (which questions get played, where people drop off) in aggregate — never to single you out.</li>
+        <li>Show ads that keep the app free.</li>
+      </ul>
+    </section>
+
+    <section id="third-parties">
+      <span class="eyebrow">03</span>
+      <h2>Third-party services</h2>
+      <p>Mandela Recall is built on a small number of services, all operated by Google:</p>
+      <ul>
+        <li><strong>Firebase</strong> (Authentication, Firestore database, Analytics) — stores your account, votes, and submissions, and reports anonymous usage events.</li>
+        <li><strong>Google AdMob</strong> — serves the banner and interstitial ads you see in the app.</li>
+      </ul>
+      <p>
+        We do not use Apple's App Tracking Transparency permission, and our app does not track you across other
+        companies' apps or websites for advertising. Google's SDKs may still collect technical identifiers (like
+        an advertising ID or IP address) to serve ads, prevent fraud, and measure performance — that data is
+        handled under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.
+      </p>
+    </section>
+
+    <section id="sharing">
+      <span class="eyebrow">04</span>
+      <h2>Sharing &amp; sale of data</h2>
+      <p><strong>We do not sell your personal information</strong> — to anyone, ever.</p>
+      <p>
+        Crowd statistics shown in the app (like "62% of players remember it differently") are aggregate
+        percentages only. We never show who voted for what. Your written effect submissions are read by us
+        for editorial review and are not published with your name attached.
+      </p>
+    </section>
+
+    <section id="retention">
+      <span class="eyebrow">05</span>
+      <h2>Retention &amp; deletion</h2>
+      <p>
+        We keep your account, votes, and submissions for as long as your account exists, so vote counts stay
+        accurate and submissions stay reviewable. You can delete your data at any time by emailing us
+        (see <a href="#contact">Contact us</a>) — we'll remove your account and everything tied to it within
+        30 days. Aggregate crowd tallies that no longer reference you stay in place, since they never identified
+        you to begin with.
+      </p>
+    </section>
+
+    <section id="rights">
+      <span class="eyebrow">06</span>
+      <h2>Your choices &amp; rights</h2>
+      <ul>
+        <li>Sign out any time from <strong>Settings → Account</strong>.</li>
+        <li>Request a copy or deletion of your data by contacting us — see below.</li>
+        <li>Manage ad personalization at the system level: iOS <strong>Settings → Privacy &amp; Security → Apple Advertising</strong>, and Google's own controls at <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.</li>
+        <li>If you're in the EU, UK, or California, you may have additional rights (access, correction, portability, objection) under GDPR or the CCPA — contact us to exercise any of them.</li>
+      </ul>
+    </section>
+
+    <section id="children">
+      <span class="eyebrow">07</span>
+      <h2>Children's privacy</h2>
+      <p>
+        Mandela Recall isn't directed at children under 13, and we don't knowingly collect personal information
+        from them. If you believe a child has given us personal information, contact us and we'll remove it.
+      </p>
+    </section>
+
+    <section id="security">
+      <span class="eyebrow">08</span>
+      <h2>Security</h2>
+      <p>
+        Your data is stored with Firebase's infrastructure, protected by security rules that restrict each
+        account to reading and writing only its own records. No method of transmission or storage is
+        completely secure, but we don't ask for anything beyond what's described on this page.
+      </p>
+    </section>
+
+    <section id="changes">
+      <span class="eyebrow">09</span>
+      <h2>Changes to this policy</h2>
+      <p>
+        If this policy changes in a meaningful way, we'll update the effective date above and, where the
+        change is significant, note it inside the app.
+      </p>
+    </section>
+
+    <section id="contact">
+      <span class="eyebrow">10</span>
+      <h2>Contact us</h2>
+      <p>
+        Questions, data requests, or deletion requests can be sent through the support contact
+        listed on our App Store product page.
+      </p>
+    </section>
+
+    <hr class="divider" />
+
+    <footer>
+      Mandela Recall — free, ad-supported, crowd-powered memory stats.
+    </footer>
+
+  </div>
+</div>
